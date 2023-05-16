@@ -1,7 +1,17 @@
+package pages;
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
+
+import pages.PageInvoice.PageInvoice;
+import pages.Medicine.Medicine;
+import pages.Model.MedicineCRUD;
+import pages.font.OpenFont;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
+import pages.UserUpdatepage;
 
 class RoundedBorder extends AbstractBorder {
         private Color color;
@@ -33,6 +43,7 @@ class RoundedBorder extends AbstractBorder {
 }
 
 public class Dashboard extends JFrame {
+        JFrame frame;
         JLabel logoLabel;
         JLabel statsItemText2;
         JLabel statsItemIcon2;
@@ -80,6 +91,7 @@ public class Dashboard extends JFrame {
 
         public Dashboard() {
                 initComponents();
+                frame = this;
         }
 
         private void initComponents() {
@@ -144,9 +156,9 @@ public class Dashboard extends JFrame {
                 logoPanel.setBackground(new Color(3, 78, 161));
                 logoPanel.setLayout(new BorderLayout());
 
-                logoLabel.setFont(new Font("Open Sans", 1, 25));
+                logoLabel.setFont(new OpenFont(25, Font.BOLD).getFont());
                 logoLabel.setForeground(new Color(255, 255, 255));
-                logoLabel.setText("App Name");
+                logoLabel.setText("Pharmacy Management");
                 logoPanel.add(logoLabel, BorderLayout.CENTER);
 
                 
@@ -154,15 +166,49 @@ public class Dashboard extends JFrame {
                 menuPanel.setBackground(new Color(3, 78, 161));
                 menuPanel.setLayout(new GridLayout(1, 0, 25, 0));
                 // bellIcon
-                bellIcon.setIcon(new ImageIcon(getClass().getResource("/icon/bellicon.png")));
+                bellIcon.setIcon(new ImageIcon("./pages/icon/bellicon.png"));
                 bellIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 menuPanel.add(bellIcon);
                 // userIcon
-                userIcon.setIcon(new ImageIcon(getClass().getResource("/icon/usericon.png")));
+                userIcon.setIcon(new ImageIcon("./pages/icon/usericon.png"));
                 userIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                userIcon.addMouseListener(new MouseListener() {
+
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                                frame.dispose();
+                                try {
+                                        new UserUpdatepage();
+                                } catch (NumberFormatException | IOException e1) {
+                                        e1.printStackTrace();
+                                }
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                                // TODO Auto-generated method stub
+
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+
+                        }
+                        
+                });
                 menuPanel.add(userIcon);
                 // logoutIcon
-                logoutIcon.setIcon(new ImageIcon(getClass().getResource("/icon/logouticon.png")));
+                logoutIcon.setIcon(new ImageIcon("./pages/icon/logouticon.png"));
                 logoutIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 menuPanel.add(logoutIcon);
 
@@ -213,15 +259,15 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                statsItemNumber1.setFont(new Font("Open Sans", 1, 24));
+                statsItemNumber1.setFont(new OpenFont(24, Font.BOLD).getFont());
                 statsItemNumber1.setForeground(new Color(255, 255, 255));
-                statsItemNumber1.setText("124");
+                statsItemNumber1.setText(Integer.toString(MedicineCRUD.searchMedicine(null).size()));
 
-                statsItemText1.setFont(new Font("Open Sans", 1, 12));
+                statsItemText1.setFont(new OpenFont(12, Font.BOLD).getFont());
                 statsItemText1.setForeground(new Color(255, 255, 255));
                 statsItemText1.setText("Total Medicine");
 
-                statsItemIcon1.setIcon(new ImageIcon(getClass().getResource("/icon/arrow.png")));
+                statsItemIcon1.setIcon(new ImageIcon("./pages/icon/arrow.png"));
 
                 GroupLayout statsItemPanel1Layout = new GroupLayout(statsItemPanel1);
                 statsItemPanel1.setLayout(statsItemPanel1Layout);
@@ -271,15 +317,15 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                statsItemNumber2.setFont(new Font("Open Sans", 1, 24));
+                statsItemNumber2.setFont(new OpenFont(24, Font.BOLD).getFont());
                 statsItemNumber2.setForeground(new Color(255, 255, 255));
                 statsItemNumber2.setText("12");
 
-                statsItemText2.setFont(new Font("Open Sans", 1, 12));
+                statsItemText2.setFont(new OpenFont(12, Font.BOLD).getFont());
                 statsItemText2.setForeground(new Color(255, 255, 255));
                 statsItemText2.setText("Total Manufacturer");
 
-                statsItemIcon2.setIcon(new ImageIcon(getClass().getResource("/icon/arrow.png")));
+                statsItemIcon2.setIcon(new ImageIcon("./pages/icon/arrow.png"));
 
                 GroupLayout statsItemPanel2Layout = new GroupLayout(statsItemPanel2);
                 statsItemPanel2.setLayout(statsItemPanel2Layout);
@@ -331,15 +377,15 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                statsItemNumber3.setFont(new Font("Open Sans", 1, 24));
+                statsItemNumber3.setFont(new OpenFont(24, Font.BOLD).getFont());
                 statsItemNumber3.setForeground(new Color(255, 255, 255));
                 statsItemNumber3.setText("34");
 
-                statsItemText3.setFont(new Font("Open Sans", 1, 12));
+                statsItemText3.setFont(new OpenFont(12, Font.BOLD).getFont());
                 statsItemText3.setForeground(new Color(255, 255, 255));
                 statsItemText3.setText("Total Customer");
 
-                statsItemIcon3.setIcon(new ImageIcon(getClass().getResource("/icon/arrow.png")));
+                statsItemIcon3.setIcon(new ImageIcon("./pages/icon/arrow.png"));
 
                 GroupLayout statsItemPanel3Layout = new GroupLayout(statsItemPanel3);
                 statsItemPanel3.setLayout(statsItemPanel3Layout);
@@ -390,15 +436,15 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                statsItemNumber4.setFont(new Font("Open Sans", 1, 24));
+                statsItemNumber4.setFont(new OpenFont(24, Font.BOLD).getFont());
                 statsItemNumber4.setForeground(new Color(255, 255, 255));
                 statsItemNumber4.setText("22");
 
-                statsItemText4.setFont(new Font("Open Sans", 1, 12));
+                statsItemText4.setFont(new OpenFont(12, Font.BOLD).getFont());
                 statsItemText4.setForeground(new Color(255, 255, 255));
                 statsItemText4.setText("Total Vendor");
 
-                statsItemIcon4.setIcon(new ImageIcon(getClass().getResource("/icon/arrow.png")));
+                statsItemIcon4.setIcon(new ImageIcon("./pages/icon/arrow.png"));
 
                 GroupLayout statsItemPanel4Layout = new GroupLayout(statsItemPanel4);
                 statsItemPanel4.setLayout(statsItemPanel4Layout);
@@ -461,7 +507,7 @@ public class Dashboard extends JFrame {
                                                 .addGap(0, 20, 20));
 
                 // dashBoardTitle
-                dashboardTitle.setFont(new Font("Open Sans", 1, 26));
+                dashboardTitle.setFont(new OpenFont(26, Font.BOLD).getFont());
                 dashboardTitle.setForeground(new Color(83, 83, 83));
                 dashboardTitle.setText("Home/ Dashboard");
                 dashboardTitle.setAlignmentY(0.0F);
@@ -531,11 +577,40 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                optionLabel1.setFont(new Font("Open Sans", 1, 14));
+                optionLabel1.setFont(new OpenFont(14, Font.BOLD).getFont());
                 optionLabel1.setForeground(new Color(105, 106, 106));
                 optionLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-                optionLabel1.setIcon(new ImageIcon(getClass().getResource("/icon/calculator.png")));
+                optionLabel1.setIcon(new ImageIcon("./pages/icon/calculator.png"));
                 optionLabel1.setText("Create new invoice");
+                optionLabel1.addMouseListener(new MouseListener() {
+
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                                frame.dispose();
+                               new PageInvoice().setVisible(true);
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+
+                        }
+                        
+                });
                 optionPanel1.add(optionLabel1, BorderLayout.CENTER);
 
                 optionsPanel.add(optionPanel1);
@@ -560,10 +635,10 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                optionLabel2.setFont(new Font("Open Sans", 1, 14));
+                optionLabel2.setFont(new OpenFont(14, Font.BOLD).getFont());
                 optionLabel2.setForeground(new Color(105, 106, 106));
                 optionLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-                optionLabel2.setIcon(new ImageIcon(getClass().getResource("/icon/group.png")));
+                optionLabel2.setIcon(new ImageIcon("./pages/icon/group.png"));
                 optionLabel2.setText("Add Customer");
                 optionPanel2.add(optionLabel2, BorderLayout.CENTER);
 
@@ -589,10 +664,10 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                optionLabel3.setFont(new Font("Open Sans", 1, 14));
+                optionLabel3.setFont(new OpenFont(14, Font.BOLD).getFont());
                 optionLabel3.setForeground(new Color(105, 106, 106));
                 optionLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-                optionLabel3.setIcon(new ImageIcon(getClass().getResource("/icon/med.png")));
+                optionLabel3.setIcon(new ImageIcon("./pages/icon/med.png"));
                 optionLabel3.setText("Add Medicine");
                 optionPanel3.add(optionLabel3, BorderLayout.CENTER);
 
@@ -618,9 +693,9 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                optionLabel4.setFont(new Font("Open Sans", 1, 14));
+                optionLabel4.setFont(new OpenFont(14, Font.BOLD).getFont());
                 optionLabel4.setForeground(new Color(105, 106, 106));
-                optionLabel4.setIcon(new ImageIcon(getClass().getResource("/icon/stat.png")));
+                optionLabel4.setIcon(new ImageIcon("./pages/icon/stat.png"));
                 optionLabel4.setText("Todays Report");
                 optionLabel4.setHorizontalAlignment(SwingConstants.CENTER);
                 optionPanel4.add(optionLabel4, BorderLayout.CENTER);
@@ -647,10 +722,10 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                optionLabel5.setFont(new Font("Open Sans", 1, 14));
+                optionLabel5.setFont(new OpenFont(14, Font.BOLD).getFont());
                 optionLabel5.setForeground(new Color(105, 106, 106));
                 optionLabel5.setHorizontalAlignment(SwingConstants.CENTER);
-                optionLabel5.setIcon(new ImageIcon(getClass().getResource("/icon/fac.png")));
+                optionLabel5.setIcon(new ImageIcon("./pages/icon/fac.png"));
                 optionLabel5.setText("Add Manufacturer");
                 optionPanel5.add(optionLabel5, BorderLayout.CENTER);
 
@@ -675,10 +750,10 @@ public class Dashboard extends JFrame {
                         }
                 });
 
-                optionLabel6.setFont(new Font("Open Sans", 1, 14));
+                optionLabel6.setFont(new OpenFont(14, Font.BOLD).getFont());
                 optionLabel6.setForeground(new Color(105, 106, 106));
                 optionLabel6.setHorizontalAlignment(SwingConstants.CENTER);
-                optionLabel6.setIcon(new ImageIcon(getClass().getResource("/icon/report.png")));
+                optionLabel6.setIcon(new ImageIcon("./pages/icon/report.png"));
                 optionLabel6.setText("Total Report");
                 optionPanel6.add(optionLabel6, BorderLayout.CENTER);
 
@@ -750,7 +825,7 @@ public class Dashboard extends JFrame {
                                                                 .addComponent(optionsLayout)));
                 this.add(navPanel, BorderLayout.NORTH);
                 this.add(dashboardPanel);
-                setVisible(true);
+                
         }
 
         public void statsItemPanel1MouseEntered() {
@@ -835,7 +910,8 @@ public class Dashboard extends JFrame {
         }
 
         public void optionPanel3MouseClicked() {
-                // code
+                this.dispose();
+                new Medicine().setVisible(true);
         }
 
         public void optionPanel4MouseEntered() {
@@ -873,8 +949,6 @@ public class Dashboard extends JFrame {
         public void optionPanel6MouseClicked() {
                 // code
         }
-        public static void main(String[] args) {
-                new Dashboard();
-        }
+
 
 }
